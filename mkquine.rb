@@ -1,11 +1,9 @@
 input = $stdin.read
 
-head = <<EOS
-$body = #{input.inspect}
-$src  = "$head = %p\\n%s%s" %
-        [$head, $head, $body]
+shim = <<EOS
+$src  = "$shim = %p\\n$body = %p\\n%s%s" % [$shim, $body, $shim, $body]
 EOS
 
-print "$head = %p\n" % head
-print head
+print "$shim = %p\n$body = %p\n" % [shim, input]
+print shim
 print input
